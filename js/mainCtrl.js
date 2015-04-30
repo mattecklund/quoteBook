@@ -5,6 +5,9 @@ app.controller('mainCtrl', function($scope, dataService){
 	$scope.quotations = dataService.getData();
 	// console.log($scope.quotations);
 	$scope.filterQuote = {};
+	$scope.deletable;
+	$scope.filterable;
+	$scope.addable;
 
 	$scope.quoteOptions = [
 	{label: 'Text', value: 'text'}, 
@@ -20,5 +23,21 @@ app.controller('mainCtrl', function($scope, dataService){
 
 	$scope.deleteQuote = function(quote){
 		dataService.removeData(quote);
+	}
+
+	$scope.deleteQuotesOn = function(){
+		$scope.deletable = !$scope.deletable;
+		$scope.filterable = false;
+		$scope.addable = false;
+	}
+	$scope.filterQuotesOn = function(){
+		$scope.filterable = !$scope.filterable;
+		$scope.deletable = false;
+		$scope.addable = false;
+	}
+	$scope.addQuotesOn = function(){
+		$scope.addable = !$scope.addable;
+		$scope.deletable = false;
+		$scope.filterable = false;
 	}
 });
